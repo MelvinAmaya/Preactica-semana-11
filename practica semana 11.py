@@ -4,13 +4,15 @@
 from tkinter import GROOVE, Label,Button, Tk,filedialog,messagebox
 from PIL import Image,ImageTk,ImageFilter
 
-
+#-------------------Clase-----------------------------------
 class cargar():
    
+   #-------------------constructor-----------------------------------
     def __init__(self):
         self.archivo = ""
         self.size = (300,300)
 
+#-------------------metodo cargar-----------------------------------
     def cargarmetodo(self):
         self.archivo = filedialog.askopenfilename(title="Seleccione una imagen",filetypes=(("jpg file","*.jpg"),("png files","*.png"),("all files","*.*")))
         try:
@@ -22,7 +24,7 @@ class cargar():
         except:
             messagebox.showerror("Procesar imagen","Debe seleccionar una imagen jpg.")
 
-        
+#-------------------metodo blanco negro-----------------------------------
 
     def blancoNegro(self):
         if self.archivo !="":
@@ -37,6 +39,8 @@ class cargar():
         else:
             messagebox.showerror("Procesar imagen","Se necesita cargar una imagen.")
 
+#-------------------Metodo resaltar--------------------------------
+
     def Resaltar(self):
         if self.archivo !="":
             imagen3 = Image.open(self.archivo)
@@ -49,6 +53,8 @@ class cargar():
             messagebox.showinfo("Procesar imagen","Se resalto la imagen.")
         else:
             messagebox.showerror("Procesar imagen","Se necesita cargar una imagen.")
+
+#-------------------metodo desenfoque-----------------------------
 
     def desenfoque(self):
         if self.archivo !="":
@@ -63,6 +69,8 @@ class cargar():
         else:
             messagebox.showerror("Procesar imagen","Se necesita cargar una imagen.")
 
+#-------------------metodo contorno----------------------------
+
     def contorno(self):
         if self.archivo !="":
             imagen3 = Image.open(self.archivo)
@@ -76,6 +84,8 @@ class cargar():
         else:
             messagebox.showerror("Procesar imagen","Se necesita cargar una imagen.")
 
+#-------------------Ventana-------------------------
+
 ventana = Tk()
 clase1 = cargar()
 ancho_ventana = 550
@@ -86,10 +96,12 @@ y_ventana = ventana.winfo_screenheight() // 2 - alto_ventana // 2
 
 posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
 ventana.geometry(posicion)
-#ventana.geometry("550x500")
 ventana.title("Procesar imagen")
 ventana.configure(background='dark turquoise')
 ventana.resizable(0,0)
+
+#-------------------Wigets---------------------------
+
 txt0 = Label(ventana,text="Procesar imagenes ",bg='dark turquoise',font='Helvetica 16 bold')
 txt0.pack()
 imagen = Label(ventana,image="",bg='dark turquoise',relief=GROOVE,border=10)
